@@ -22,8 +22,10 @@ export default function Review({ reviewInfo }) {
                         </div>
                         <div className="location">
                             <p className="locationCSSIcon">{reviewInfo.Profile_location} </p>
-                            <p className="strong dotBefore">{reviewInfo.Profile_contributions} <span className="thin">contributions</span></p>
-                            <p className="strong dotBefore">{reviewInfo.Profile_helpFullVotes} <span className="thin">helpful votes</span></p>
+                            <div className="flexRow">
+                                <p className="strong dotBefore">{reviewInfo.Profile_contributions} <span className="thin">contributions</span></p>
+                                <p className="strong dotBefore">{reviewInfo.Profile_helpFullVotes} <span className="thin">helpful votes</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -52,7 +52,7 @@ const thisIsGoingToBeAPIData = {
       Review_rating: 5,
       Review_title: "A really fascinating and friendly tour of Copenhagen!",
       Review_ofWhatService: "3h Private walking tour, Copenhagen",
-      Review_text: "What a great tour we had!! Our guide was very friendly and knowledgeable and we enjoyed walking and chatting about the many different aspects of Copenhagen, including of course the famous Hygge We visited several places that are off the usual tourist trail and we also enjoyed tasting some typical Danish food and drink. I wish we had done the whole day tour as there is so much more to see. I would recommend this tour to anyone looking to learn about this capital city, its culture and traditions.",
+      Review_Text: "What a great tour we had!! Our guide was very friendly and knowledgeable and we enjoyed walking and chatting about the many different aspects of Copenhagen, including of course the famous Hygge We visited several places that are off the usual tourist trail and we also enjoyed tasting some typical Danish food and drink. I wish we had done the whole day tour as there is so much more to see. I would recommend this tour to anyone looking to learn about this capital city, its culture and traditions.",
       Review_date_of_experience: "February 2020"
     }, {
       Profile_image: "",
@@ -66,10 +66,33 @@ const thisIsGoingToBeAPIData = {
       Review_ofWhatService: "3h Private walking tour, Copenhagen",
       Review_Text: "We had a wonderful walking tour of Copenhagen with Alex. He was very knowledgeable and kept us entertained with fun facts while guiding us to many of the city’s sites. We learned so much about the area and the country in this short but very expertly conducted tour. Thanks, Amitylux! 😊",
       Review_date_of_experience: "October 2019"
+    }, {
+      Profile_image: "",
+      Profile_name: "Diana T",
+      Profile_location: "Tallinn, Estonia",
+      Profile_contributions: 29,
+      Profile_helpFullVotes: 17,
+      Review_date: "Oct 2019",
+      Review_rating: 5,
+      Review_title: "Very nice and informative tour guide",
+      Review_ofWhatService: "3h Private walking tour, Copenhagen",
+      Review_Text: "We had a wonderful walking tour with our tour guide Alex. He’s very informative and extremely nice, he gave us a full picture of Denmark’s history and helped us to take a lot of nice photos. It’s a wonderful experience, highly recommended!",
+      Review_date_of_experience: "September 2019"
+    }, {
+      Profile_image: "",
+      Profile_name: "Heli P",
+      Profile_location: "Kristiine linnaosa, Estonia",
+      Profile_contributions: 1,
+      Profile_helpFullVotes: 1,
+      Review_date: "Oct 2019",
+      Review_rating: 5,
+      Review_title: "Highly Recommend!",
+      Review_ofWhatService: "3h Private walking tour, Copenhagen",
+      Review_Text: "Our guide was super great! He could answer every question and provided all the interesting facts and stories about each spot. We covered a large area of the city and still got some time to wonder and explore at the major spots. Highly recommend the tour and Amitylux!",
+      Review_date_of_experience: "September 2019"
     }
   ]
 }
-
 
 class TripAdvisor_Slider extends Component {
   static slug = 'tripAdvisor_slider';

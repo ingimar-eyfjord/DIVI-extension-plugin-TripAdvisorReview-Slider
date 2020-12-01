@@ -21,7 +21,6 @@ class SIMP_TripAdvisor_Slider extends ET_Builder_Module {
 			wp_enqueue_script( "{$this->name}-builder-bundle", $hot_bundle_url, $this->_bundle_dependencies['builder'], $this->version, true );
 		}
 	}
-
 	
 	public $slug       = 'tripAdvisor_slider';
 	public $vb_support = 'on';
