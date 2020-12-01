@@ -1,3 +1,6 @@
-import HelloWorld from './HelloWorld/HelloWorld';
+// Internal Dependencies
+import TripAdvisor_Slider from './TripAdvisor_Slider/TripAdvisor_Slider';
 
-export default [HelloWorld];
+export default [
+    TripAdvisor_Slider,
+];
