@@ -3,6 +3,10 @@ import Review from './singleReview'
 import Logo from './logo'
 import Forwards from './forwards'
 import Backwards from './backwards'
+
+
+let touchStart = 0;
+
 class Slider extends Component {
     // export default function Slider(props) {
     constructor(props) {
@@ -12,8 +16,45 @@ class Slider extends Component {
         this.backwardsStyle = { display: 'none' }
         this.forwardsStyle = { display: 'block' }
     }
+    onSwipeStart(e) {
+        e.persist(e)
+        touchStart = e.touches[0].pageX
+    }
+    onSwipeEnd(e) {
+        e.persist(e)
+        const touchEnd = e.changedTouches[0].pageX
+        if ((touchStart - touchEnd) >= 100) {
+            this.onClick(undefined, 'Forwards')
+        } else if ((touchStart - touchEnd) <= 100) {
+            this.onClick(undefined, 'Backwards')
+        }
+    }
 
-    onClick(e) {
+    NavPointClick(e) {
+        e.persist(e)
+        const number = e._targetInst.alternate.index
+        if (number === 2) {
+            this.setState({ forwardsStyle: { display: 'none' } });
+        } else {
+            this.setState({ forwardsStyle: { display: 'block' } });
+        }
+        if (number === 0) {
+            this.setState({ backwardsStyle: { display: 'none' } });
+        } else {
+            this.setState({ backwardsStyle: { display: 'block' } });
+        }
+        // Go over 3 times faster
+        if (window.innerWidth >= 1200) {
+            this.setState({ position: number * 3 });
+        } else {
+            /// Go one time over
+            this.setState({ position: number });
+        }
+
+    }
+
+    onClick(e, touchEvent) {
+
         // check if buttons should be visible
         if (this.state.position === 0) {
             this.setState({ backwardsStyle: { display: 'none' } });
@@ -21,10 +62,17 @@ class Slider extends Component {
             this.setState({ backwardsStyle: { display: 'block' } });
         }
 
-
+        let direction = ''
+        if (e == undefined) {
+            direction = touchEvent
+        } else {
+            if (e.target.classList.contains("Forwards")) {
+                direction = "Forwards"
+            }
+        }
 
         /// move Forwards or backwards
-        if (e.target.classList.contains("Forwards")) {
+        if (direction == "Forwards") {
             // reveal backwards button when sliding forwards for the first time
             if (this.state.position === 0) {
                 this.setState({ backwardsStyle: { display: 'block' } });
@@ -46,7 +94,6 @@ class Slider extends Component {
                 this.setState({ forwardsStyle: { display: 'block' } });
             }
         }
-
     }
 
     componentWillMount() {
@@ -58,15 +105,27 @@ class Slider extends Component {
     render() {
         const forwards = [">"]
         const back = ["<"]
-
+        const w = window.innerWidth
         const SliderPosition = {
-            transform: `translateX(-${32 * this.state.position}vw)`
+            transform: `translateX(-${w <= 1200 ? 100 * this.state.position : 32 * this.state.position}vw)`
         }
 
-        const reviews = this.props.content.reviews.map((e, index) => { return <Review key={index} reviewInfo={e}></Review> })
+        let navigation = Object
+        const reviews = this.props.content.reviews.map((e, index) => { return <Review key={index} number={index} reviewInfo={e}></Review> })
+        if (window.innerWidth <= 1200) {
+            const length = [...reviews]
+            navigation = length.map((e, index) => { return <div key={index} navlength={length.length} className={`Navigation ${this.state.position === index ? 'active' : ""}`} onClick={this.NavPointClick.bind(this)}></div> })
+        } else {
+            const length = [...reviews]
+            navigation = length.splice(4).map((e, index) => { return <div key={index} navlength={length.length} className={`Navigation ${Math.ceil(this.state.position / 3) === index ? 'active' : ""}`} onClick={this.NavPointClick.bind(this)} ></div > })
+        }
+
         return (
 
-            <div className="SliderMainContainer" >
+            <div className="SliderMainContainer"
+                onTouchStart={this.onSwipeStart.bind(this)}
+                onTouchEnd={this.onSwipeEnd.bind(this)}
+            >
 
                 <Backwards
                     style={this.state.backwardsStyle}
@@ -80,12 +139,14 @@ class Slider extends Component {
                     {reviews}
                 </div>
 
+                <div className="navContainer">
+                    {navigation}
+                </div>
                 <Forwards
                     style={this.state.forwardsStyle}
                     onClick={this.onClick.bind(this)}
                     className="Forwards">{forwards}
                 </Forwards>
-
                 <Logo className="logo"></Logo>
 
             </div>

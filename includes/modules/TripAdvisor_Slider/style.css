@@ -1,16 +1,14 @@
-.simp-simple-header-heading {
-    margin-bottom: 20px;
-    color: black;
-    background-color: aqua;
-    display: block;
-    font-size: large;
-}
 
+:root {
+    --tripadvisorColor:  #00aa6c;
+  }
 .SliderMainContainer{
 width: 100vw;
 height: fit-content;
 overflow: hidden;
 position: relative;
+display: grid;
+grid-template-rows: auto;
 }
 .Backwards, .Forwards{
     height: 10%;
@@ -19,6 +17,27 @@ color: black;
 font-weight: bold;
 cursor: pointer;
 z-index: 500;
+}
+.navContainer{
+ position: absolute;
+    grid-row: 2;
+    left: 50vw;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+}
+.Navigation{
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    display: block;
+    background-color: gray;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.active{
+    background-color: var(--tripadvisorColor);
 }
 .Backwards{
     position: absolute;
@@ -34,13 +53,18 @@ z-index: 500;
 }
 
 .SliderSlidingContainer{
-display: flex;
-flex-direction: row;
+/* display: flex; */
+grid-row: 1;
+display: grid;
+grid-template-columns: auto;
+grid-template-rows: auto;
+/* flex-direction: row; */
 width: fit-content;
 transition: all 0.5s ease-out;
 }
 
 .ReviewContainer{
+    grid-row: 1;
     margin-left: 5vw;
     margin-right: 5vw;
     margin-top: 5vw;
@@ -57,7 +81,7 @@ transition: all 0.5s ease-out;
     margin-right: 10vw;
 }
 .reviewBall:first-of-type{
-    margin:0;
+    margin-left:0;
 }
 .location *{
     font-size: small;
@@ -69,7 +93,7 @@ transition: all 0.5s ease-out;
 }
 .reviewImg{
     display: block;
-    background-color: cadetblue;
+ background-color: var(--tripadvisorColor);
     height: 75px;
     width: 75px;
     border-radius: 50%;
@@ -77,14 +101,53 @@ transition: all 0.5s ease-out;
     text-align: center;
     position: relative;
 }
-.reviewImg:after{
-    content:"img";
-    color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.reviewImg::after{
+    content:""
 }
+.ReviewImage_0{
+    background-image: url(./components/images/7.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.ReviewImage_1{
+    background-image: url(./components/images/5.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.ReviewImage_2{
+    background-image: url(./components/images/3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.ReviewImage_3{
+    background-image: url(./components/images/3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.ReviewImage_4{
+    background-image: url(./components/images/7.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.ReviewImage_5{
+    background-image: url(./components/images/5.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.ReviewImage_6{
+    background-image: url(./components/images/3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
 .namePlusLocation{
     display: flex;
     flex-direction: column;
@@ -96,6 +159,9 @@ transition: all 0.5s ease-out;
 .location, .name {
     display: flex;
     flex-direction: column;
+}
+.reviewName{
+    font-size: 1rem;
 }
 .name *{
     padding-bottom: 0;
@@ -131,18 +197,52 @@ content: "📍 ";
     margin-left: 5px;
     margin-right: 5px;
     border-radius: 50%;
-background-color:#00aa6c;
+background-color:var(--tripadvisorColor);
 }
-.reviewBall:first-of-type, .reviewBall:last-of-type{
-    margin:0;
+.reviewBall:first-of-type{
+    margin-left:0;
 }
+
 .logo{
-    height: 10%;
-    width: auto;
-    position: absolute;
+    grid-row: 3;
+    grid-column: 1;
     bottom:0;
     left: 0;
     margin: 1rem;
+    margin-bottom: 0;
+    height: 100px;
+    width: auto;
 }
 
 
+@media only screen and (max-width: 1200px) {
+    .Backwards, .Forwards{
+        height: 5%;
+    }
+    .logo{
+        height: 50px;
+    }
+    .ReviewContainer{
+        margin-left: 10vw;
+        margin-right: 10vw;
+        margin-top: 5vw;
+        margin-bottom: 5vh;
+        width: 80vw;
+    }
+    .ReviewContainer:first-of-type{
+        margin-left: 10vw;
+    }
+    .ReviewContainer:nth-child(3n) {
+        margin-right: 10vw;
+    }
+    .reviewBall:first-of-type{
+        margin:0;
+    }
+}
+@media only screen and (max-width: 600px) {
+.Backwards{
+    display: none!important;
+}
+.Forwards{
+display: none!important;
+}}

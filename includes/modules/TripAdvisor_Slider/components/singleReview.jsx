@@ -1,12 +1,13 @@
 import React from 'react'
-export default function Review({ reviewInfo }) {
+
+export default function Review({ reviewInfo, number }) {
 
     // console.log(reviewInfo)
     let ratingArray = []
     for (let i = 0; i < reviewInfo.Review_rating; i++) {
         ratingArray.push(<span key={i} className="reviewBall"></span>)
     }
-
+    const img = ``
     return (
 
 
@@ -14,10 +15,12 @@ export default function Review({ reviewInfo }) {
 
             <div className="profileInfo">
                 <div className="imgNameLocation">
-                    <div className="reviewImg"></div>
+                    <div className={`reviewImg ReviewImage_${number}`}>
+
+                    </div>
                     <div className="namePlusLocation">
                         <div className="name">
-                            <p className="strong">{reviewInfo.Profile_name} </p>
+                            <p className="strong reviewName">{reviewInfo.Profile_name} </p>
                             <p className="thin">Wrote a review {reviewInfo.Review_date}</p>
                         </div>
                         <div className="location">
